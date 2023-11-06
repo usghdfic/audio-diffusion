@@ -42,12 +42,10 @@ def get_full_repo_name(model_id: str,
 
 def main(args):
     output_dir = os.environ.get("SM_MODEL_DIR", None) or args.output_dir
-    logging_dir = os.path.join(output_dir, args.logging_dir)
+    # logging_dir = os.path.join(output_dir, args.logging_dir)
     accelerator = Accelerator(
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         mixed_precision=args.mixed_precision,
-        log_with="tensorboard",
-        logging_dir=logging_dir,
     )
 
     if args.dataset_name is not None:
